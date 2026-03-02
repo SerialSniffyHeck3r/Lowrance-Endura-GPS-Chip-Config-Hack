@@ -193,7 +193,7 @@ So the picture became clear:
 Which meant one thing:
 I could start tweaking those values.
 
-![3](reg_trip.jpg)
+![3](Reg_trip.jpg)
 
 In addition, I also found out that **every internal variables** are stored as a form of system registry.
 - System Versions
@@ -216,7 +216,7 @@ I then experimented with modifying:
 - Reported precision / position output settings
 - NMEA output update rate
 
-![4](result.gif)
+![4](resulrt.gif)
 
 Results:
 
