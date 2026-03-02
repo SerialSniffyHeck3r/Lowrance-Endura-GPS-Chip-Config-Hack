@@ -154,6 +154,8 @@ While searching for GNS7560 online, I had found one of the very few public refer
 - A header file: GN_GPS_api.h
 - Coming from an Android device repository that used the same GNS7560 GPS receiver
 
+https://github.com/Nu3001/hardware_rk29_gps/blob/master/gns7560/inc/GN_GPS_api.h
+
 Many of the field names inside that header matched the registry value names inside Glonav-GPS almost one-to-one.
 
 So the picture became clear:
