@@ -18,7 +18,7 @@
 
 ---
 
-![1](Boot_Screen.jpg)
+
 
 ## Background & Motivation
 
@@ -52,12 +52,19 @@ One of the Endura units had a very simple but fatal symptom:
 - The LCD would show the usual UI
 - But **the touchscreen simply did not respond**
 
+![2](disassemble1.jpg)
+
 After opening the unit, I traced the touchscreen connection and found:
 
 - A **4-pin resistive touch panel cable** going to the main board
 - A very suspicious looking solder joint / connector area
 
-I strongly suspected a cracked or poorly soldered connection on this 4-wire resistive touch interface.  
+I strongly suspected a cracked or poorly soldered connection on this 4-wire resistive touch interface.
+
+![2](disassemble2.jpg)
+
+And there it was!
+
 So:
 
 - Reflowed and re-soldered the connector
@@ -76,6 +83,8 @@ So now I had:
 
 ## Hijacking the boot flow: from Endura app to OziExplorer
 
+![1](Boot_Screen.jpg)
+
 The Endura firmware has an interesting behavior:
 
 - On boot, if there is an SD card inserted
@@ -91,6 +100,8 @@ By placing OziExplorer on the SD card with the expected update executable name, 
 2. Have it run OziExplorer instead of the default Lowrance UI
 3. Use OziExplorer’s own configuration tools to create a shortcut that launches:
 
+![3](WinCE_Home.jpg)
+
 Once explorer.exe was started, the familiar and gloriously ugly Windows CE shell appeared.
 So yes:
 
@@ -98,7 +109,10 @@ The Endura is basically a Windows CE handheld with a custom shell on top.
 
 ## Talking to the GPS module
 
+![3](Serial_Port.jpg)
+
 With the CE shell available, I installed a serial terminal for Windows CE and started poking around for interesting COM ports.
+It turned out COM3 is the dedicated COM Port for GPS, and Lowrance app would have hardcoded COM Port inside it. 
 
 On the suspected GPS port, something instantly stood out.
 Every time I opened a serial session, I would see:
@@ -138,6 +152,11 @@ If that is true, then on Windows CE:
 The configuration of that GPS “driver” must live somewhere in the OS…
 and on CE, “somewhere” usually means the registry.
 
+![3](Regdeit_Version.jpg)
+
+Some versions of Windows CE does not include regedit, but one can easily download Windows CE regedit online.
+Somehow I got an ARM compatible version of Windows CE Regedit and boom! there it is. 
+
 ## Hunting the driver in the Windows CE registry
 
 On Windows CE, many built-in device drivers are registered under:
@@ -151,6 +170,11 @@ Eventually I found a key that matched what I was hoping for:
 **HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Glonav-GPS**
 
 Under this key were multiple values that looked very familiar.
+
+![3](gpsset1.jpg)
+![3](gpsset2.jpg)
+![3](gpsset3.jpg)
+
 While searching for GNS7560 online, I had found one of the very few public references to this chip:
 
 - A header file: GN_GPS_api.h
@@ -169,6 +193,13 @@ So the picture became clear:
 Which meant one thing:
 I could start tweaking those values.
 
+![3](reg_trip.jpg)
+
+In addition, I also found out that **every internal variables** are stored as a form of system registry.
+- System Versions
+- System Update History
+- Trip Computer, GPS Data
+- Almost every variable that Lowrance Endura APP can hold 
 
 
 ## Tuning the GNS7560 GPS settings
@@ -184,6 +215,8 @@ I then experimented with modifying:
 
 - Reported precision / position output settings
 - NMEA output update rate
+
+![4](result.gif)
 
 Results:
 
