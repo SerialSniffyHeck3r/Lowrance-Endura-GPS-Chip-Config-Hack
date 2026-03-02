@@ -25,6 +25,11 @@ I’ve always liked devices that pretend to be “closed”, but are actually ju
 The Lowrance Endura handheld GPS is one of those.  
 Lowrance is well known in the marine world for their fish finders and chart plotters, but not so much for hiking or automotive GPS units like Garmin.
 
+And somehow... I loved GPS devices ever since I was a kid. Its clearly a fascinating things to even just look at it... 
+Think about it. You have a portable device which have a small chip integrated in it, and you can know every information about your location? 
+
+I started to ride motorcycle from 2023. I needed a device that can do everything, like displaying lots of data fields and store it inside a device as a form of a log file... but in a faster GPS refresh rate. Garmin didn't fit into my budget, and is quite limited since GPS refresh rate is fixed into 1Hz. 
+
 At some point I heard a rumor:
 
 > “These Endura units are actually running Windows CE inside.”
