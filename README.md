@@ -18,6 +18,8 @@
 
 ---
 
+![1](Boot_Screen.jpg)
+
 ## Background & Motivation
 
 I’ve always liked devices that pretend to be “closed”, but are actually just… lazy about hiding their internals.
