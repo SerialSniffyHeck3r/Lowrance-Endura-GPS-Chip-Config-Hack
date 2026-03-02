@@ -14,6 +14,7 @@
 
 자세한 내용은 아래 영어 설명과 개별 문서에서 다룹니다.
 
+https://github.com/SerialSniffyHeck3r/Lowrance-Endura-GPS-Chip-Config-Hack/blob/main/README_KR.md
 한국어 문서는 README_KR.md를 참조하십시오.
 
 ---
